@@ -31,7 +31,7 @@ def textFromHtml(body):
     soup = BeautifulSoup(body, 'html.parser')
     texts = soup.findAll(text=True)
     visibleTexts = filter(tagVisible, texts)  
-    return u" ".join(t.strip() for t in visibleTexts).encode('utf-8')
+    return u" ".join(visibleTexts).encode('utf-8')
 
 
 """
@@ -64,7 +64,7 @@ for each in tag:
 	if (each.a.string == 'Abelar Hightower'): #beginning of characters
 		flag = 0
 	elif (each.a.string == "Characters"): #end of characters
-		break
+		flag = 1
 
 	if (flag == 0 and (each.a.string in top300) ):
 		link = mainPage + each.a["href"]
